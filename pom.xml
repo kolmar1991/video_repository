@@ -82,6 +82,12 @@
             <type>pom</type>
             <version>2.11.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.sun.jersey.contribs</groupId>
+            <artifactId>jersey-multipart</artifactId>
+            <version>1.11.1</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
     </dependencyManagement>
     <repositories>
