@@ -12,5 +12,12 @@
     <artifactId>client-side</artifactId>
     <name>Client side project</name>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.jena</groupId>
+            <artifactId>apache-jena-libs</artifactId>
+            <type>pom</type>
+        </dependency>
+    </dependencies>
 
 </project>

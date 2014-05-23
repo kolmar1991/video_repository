@@ -55,10 +55,5 @@
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.apache.jena</groupId>
-            <artifactId>apache-jena-libs</artifactId>
-            <type>pom</type>
-        </dependency>
     </dependencies>
 </project>
