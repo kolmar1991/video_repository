@@ -30,6 +30,11 @@ public class Tutorial {
         datasetAccessor.putModel("dss", model);
         model = datasetAccessor.getModel("dss");
 
+//        InputStream decodedInput = new ByteArrayInputStream(s.getBytes());
+//        Model model2 = ModelFactory.createDefaultModel();
+//        model2.read(decodedInput, null);
+//        model2.write(System.out);
+
         printModel(model);
 
     }
