@@ -33,7 +33,7 @@ public class Application {
 		 
 		final MainView view = new MainView();
 
-		MainCardController mainCardController = new MainCardController(view.getMainPanel().getMainCardView());
+		MainCardController mainCardController = new MainCardController(view.getMainPanel().getMainCardView(), view.getMainPanel().getOptionsCardView());
 		
 		//TransferRowController transfeRowController0 = new TransferRowController(view.getMainPanel().getMainCardView().getTranferRowView(0), view.getFrame());
 

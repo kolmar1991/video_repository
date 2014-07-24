@@ -1,21 +1,29 @@
 package gui.view;
 
-import javax.swing.JButton;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class OptionsCardView {
 	JPanel panel;
 	final static String CARDNAME = "Opcje";
 
+    JComboBox moviesExtensions;
+
 	public OptionsCardView() {
 		panel = new JPanel();
 
-		panel.add(new JButton("test2"));
-		panel.add(new JButton("test3"));
+        String[] moviesExtensionsStrings = { "avi", "mpeg", "mov"};
+
+        moviesExtensions = new JComboBox(moviesExtensionsStrings);
+
+		panel.add(moviesExtensions);
 	}
 
 	public JPanel getCard() {
 		return panel;
 	}
+
+    public String getMoviesExtension(){
+        return (String) moviesExtensions.getSelectedItem();
+    }
 
 }

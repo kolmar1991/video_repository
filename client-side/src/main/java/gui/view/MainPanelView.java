@@ -37,4 +37,8 @@ public class MainPanelView {
 		return mainCardView;
 	}
 
+    public OptionsCardView getOptionsCardView() {
+        return optionsCardView;
+    }
+
 }
