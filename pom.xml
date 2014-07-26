@@ -18,6 +18,7 @@
     <modules>
         <module>server-side</module>
         <module>client-side</module>
+        <module>ConverterExample</module>
     </modules>
 
     <build>
