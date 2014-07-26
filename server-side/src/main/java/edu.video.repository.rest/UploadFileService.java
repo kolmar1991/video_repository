@@ -20,10 +20,14 @@ public class UploadFileService {
             @FormDataParam("file") FormDataContentDisposition fileDetail,
             @FormDataParam("username") String username) {
 
-        String uploadedFileLocation = "c://uploadedFiles/" + username + "/" + fileDetail.getFileName();
+        String uploadedFileLocation = RestConstants.MAIN_DIR + username + "/" + fileDetail.getFileName();
+        File file = new File(uploadedFileLocation);
         System.out.println(username);
         // save it
-        saveToFile(uploadedInputStream, uploadedFileLocation);
+        if (file.exists()) {
+            file.delete();
+        }
+        saveToFile(uploadedInputStream, file);
 
         String output = "File uploaded via Jersey based RESTFul Webservice to: " + uploadedFileLocation;
 
@@ -33,8 +37,7 @@ public class UploadFileService {
 
     // save uploaded file to new location
     private void saveToFile(InputStream uploadedInputStream,
-                            String uploadedFileLocation) {
-        File file = new File(uploadedFileLocation);
+                            File file) {
         file.getParentFile().mkdirs();
 
         try {
