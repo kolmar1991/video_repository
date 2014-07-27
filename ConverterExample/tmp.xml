@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?><dataset name="Walk1">
+	
+	<frame number="0">
+
+        <objectlist/>
+
+        <grouplist/>
+
+    </frame>
+
+    <frame number="1">
+
+        <objectlist/>
+
+        <grouplist/>
+
+    </frame>
+
+    <frame number="2">
+
+        <objectlist/>
+
+        <grouplist/>
+
+    </frame>
+	<frame number="85">
+
+        <objectlist>
+
+            <object id="0">
+                <orientation>120</orientation>
+                <box h="49" w="62" xc="208" yc="144"/>
+                <appearance>visible</appearance>
+                <hypothesislist>
+                    <hypothesis evaluation="1.0" id="1" prev="1.0">
+                        <movement evaluation="1.0">walking</movement>
+                        <role evaluation="1.0">walker</role>
+                        <context evaluation="1.0">immobile</context>
+                        <situation evaluation="1.0">moving</situation>
+                    </hypothesis>
+                 </hypothesislist>
+            </object>
+
+            <object id="4">
+                <orientation>0</orientation>
+                <box h="13" w="30" xc="39" yc="196"/>
+                <appearance>visible</appearance>
+                <hypothesislist>
+                    <hypothesis evaluation="1.0" id="1" prev="1.0">
+                        <movement evaluation="1.0">walking</movement>
+                        <role evaluation="1.0">walker</role>
+                        <context evaluation="1.0">immobile</context>
+                        <situation evaluation="1.0">moving</situation>
+                    </hypothesis>
+                 </hypothesislist>
+            </object>
+
+            <object id="5">
+                <orientation>0</orientation>
+                <box h="9" w="16" xc="30" yc="197"/>
+                <appearance>visible</appearance>
+                <hypothesislist>
+                    <hypothesis evaluation="1.0" id="1" prev="1.0">
+                        <movement evaluation="1.0">walking</movement>
+                        <role evaluation="1.0">walker</role>
+                        <context evaluation="1.0">immobile</context>
+                        <situation evaluation="1.0">moving</situation>
+                    </hypothesis>
+                 </hypothesislist>
+            </object>
+
+        </objectlist>
+
+        <grouplist>
+
+            <group id="0">
+                <orientation>0</orientation>
+                <box h="17" w="36" xc="38" yc="196"/>
+                <members>4,5</members>
+                <appearance>visible</appearance>
+                <hypothesislist>
+                    <hypothesis evaluation="1.0" id="1" prev="1.0">
+                        <movement evaluation="1.0">movement</movement>
+                        <role evaluation="1.0">walkers</role>
+                        <context evaluation="1.0">meeting</context>
+                        <situation evaluation="1.0">moving</situation>
+                    </hypothesis>
+                 </hypothesislist>
+            </group>
+
+        </grouplist>
+
+    </frame>
+
+    <frame number="86">
+
+        <objectlist>
+
+            <object id="0">
+                <orientation>119</orientation>
+                <box h="45" w="63" xc="207" yc="142"/>
+                <appearance>visible</appearance>
+                <hypothesislist>
+                    <hypothesis evaluation="1.0" id="1" prev="1.0">
+                        <movement evaluation="1.0">walking</movement>
+                        <role evaluation="1.0">walker</role>
+                        <context evaluation="1.0">immobile</context>
+                        <situation evaluation="1.0">moving</situation>
+                    </hypothesis>
+                 </hypothesislist>
+            </object>
+
+            <object id="4">
+                <orientation>0</orientation>
+                <box h="12" w="30" xc="39" yc="195"/>
+                <appearance>visible</appearance>
+                <hypothesislist>
+                    <hypothesis evaluation="1.0" id="1" prev="1.0">
+                        <movement evaluation="1.0">walking</movement>
+                        <role evaluation="1.0">walker</role>
+                        <context evaluation="1.0">immobile</context>
+                        <situation evaluation="1.0">moving</situation>
+                    </hypothesis>
+                 </hypothesislist>
+            </object>
+
+            <object id="5">
+                <orientation>0</orientation>
+                <box h="10" w="18" xc="31" yc="197"/>
+                <appearance>visible</appearance>
+                <hypothesislist>
+                    <hypothesis evaluation="1.0" id="1" prev="1.0">
+                        <movement evaluation="1.0">walking</movement>
+                        <role evaluation="1.0">walker</role>
+                        <context evaluation="1.0">immobile</context>
+                        <situation evaluation="1.0">moving</situation>
+                    </hypothesis>
+                 </hypothesislist>
+            </object>
+
+        </objectlist>
+
+        <grouplist>
+
+            <group id="0">
+                <orientation>0</orientation>
+                <box h="16" w="36" xc="38" yc="196"/>
+                <members>4,5</members>
+                <appearance>visible</appearance>
+                <hypothesislist>
+                    <hypothesis evaluation="1.0" id="1" prev="1.0">
+                        <movement evaluation="1.0">movement</movement>
+                        <role evaluation="1.0">walkers</role>
+                        <context evaluation="1.0">meeting</context>
+                        <situation evaluation="1.0">moving</situation>
+                    </hypothesis>
+                 </hypothesislist>
+            </group>
+
+        </grouplist>
+
+    </frame>
+
+    <frame number="87">
+
+        <objectlist>
+
+            <object id="0">
+                <orientation>123</orientation>
+                <box h="43" w="63" xc="207" yc="138"/>
+                <appearance>visible</appearance>
+                <hypothesislist>
+                    <hypothesis evaluation="1.0" id="1" prev="1.0">
+                        <movement evaluation="1.0">walking</movement>
+                        <role evaluation="1.0">walker</role>
+                        <context evaluation="1.0">immobile</context>
+                        <situation evaluation="1.0">moving</situation>
+                    </hypothesis>
+                 </hypothesislist>
+            </object>
+
+            <object id="4">
+                <orientation>0</orientation>
+                <box h="12" w="29" xc="39" yc="195"/>
+                <appearance>visible</appearance>
+                <hypothesislist>
+                    <hypothesis evaluation="1.0" id="1" prev="1.0">
+                        <movement evaluation="1.0">walking</movement>
+                        <role evaluation="1.0">walker</role>
+                        <context evaluation="1.0">immobile</context>
+                        <situation evaluation="1.0">moving</situation>
+                    </hypothesis>
+                 </hypothesislist>
+            </object>
+
+            <object id="5">
+                <orientation>0</orientation>
+                <box h="12" w="19" xc="31" yc="197"/>
+                <appearance>visible</appearance>
+                <hypothesislist>
+                    <hypothesis evaluation="1.0" id="1" prev="1.0">
+                        <movement evaluation="1.0">walking</movement>
+                        <role evaluation="1.0">walker</role>
+                        <context evaluation="1.0">immobile</context>
+                        <situation evaluation="1.0">moving</situation>
+                    </hypothesis>
+                 </hypothesislist>
+            </object>
+
+        </objectlist>
+
+        <grouplist>
+
+            <group id="0">
+                <orientation>0</orientation>
+                <box h="15" w="35" xc="38" yc="195"/>
+                <members>4,5</members>
+                <appearance>visible</appearance>
+                <hypothesislist>
+                    <hypothesis evaluation="1.0" id="1" prev="1.0">
+                        <movement evaluation="1.0">movement</movement>
+                        <role evaluation="1.0">walkers</role>
+                        <context evaluation="1.0">meeting</context>
+                        <situation evaluation="1.0">moving</situation>
+                    </hypothesis>
+                 </hypothesislist>
+            </group>
+
+        </grouplist>
+
+    </frame>
+</dataset>
