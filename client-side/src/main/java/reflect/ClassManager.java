@@ -1,6 +1,7 @@
 package reflect;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.Enumeration;
@@ -21,7 +22,7 @@ public class ClassManager {
         following method loads class where convert method is defined, in order to invoke the method
         during coversion process
     */
-    public static Class load(String jarPath, String classNameToLoad) throws IOException, ClassNotFoundException {
+    private static Class load(String jarPath, String classNameToLoad) throws IOException, ClassNotFoundException {
         JarFile jarFile = new JarFile(jarPath);
         Enumeration<JarEntry> entries = jarFile.entries();
         URLClassLoader classLoader = URLClassLoader.newInstance(new URL[]{new URL("jar:file:" + jarPath + "!/")});
@@ -43,5 +44,16 @@ public class ClassManager {
             and other configuration stuff
          */
         throw new ClassNotFoundException();
+    }
+    
+    public static String invoke(String jarPath, String classNameToLoad, String methodName, Object object) throws NoSuchMethodException, IllegalAccessException,
+            IllegalArgumentException, InvocationTargetException, IOException, ClassNotFoundException {
+        Class clazz = load(jarPath, classNameToLoad);
+        return (String) clazz.getMethod(methodName).invoke(object);
+    }
+    
+    public static void main(String[] args) throws IOException, NoSuchMethodException, IllegalAccessException, IllegalArgumentException,
+            InvocationTargetException, ClassNotFoundException {
+        System.out.println(invoke("ConverterExample-1.0-SNAPSHOT.jar", "main.MainClass", "convert", null));
     }
 }
