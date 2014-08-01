@@ -1,1 +1,14 @@
-/*.iml
+/.idea
+*.iml
+
+#client-side
+/client-side/.idea
+/client-side/target
+
+#converterExample
+/ConverterExample/.idea
+/ConverterExample/target
+
+#server-side
+/server-side/.idea
+/server-side/target
