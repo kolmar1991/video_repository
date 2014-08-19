@@ -5,10 +5,12 @@ import gui.view.MainCardView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.Date;
 
 import javax.swing.JFileChooser;
 
 import gui.view.OptionsCardView;
+import model.DateService;
 import model.FileSearch;
 
 public class MainCardController implements ActionListener {
@@ -72,7 +74,15 @@ public class MainCardController implements ActionListener {
             FileSearch fileSearch = new FileSearch(mainCardView
 					.getMoviesDirectoryTextField().getText(), mainCardView
 					.getXmlsDirectoryTextField().getText(), optionsCardView.getMoviesExtension());
-			
+
+            DateService dateService= new DateService();
+
+            Date date = dateService.getLastCommitDate();
+
+            if(date != null){
+            System.out.println("XXXX DATE: " + date.toString());
+            }
+
 			fileSearch.findMovies();
 			fileSearch.findXmls();
 			fileSearch.TestConsolePrint();

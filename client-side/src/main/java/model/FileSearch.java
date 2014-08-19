@@ -2,6 +2,7 @@ package model;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class FileSearch {
@@ -13,6 +14,7 @@ public class FileSearch {
 	List<File> movies;
 	List<File> xmls;
 
+
 	public FileSearch(String moviesDirectory, String xmlsDirectory,
 			String moviesExtension) {
 		this.moviesDirectory = moviesDirectory;
@@ -23,9 +25,30 @@ public class FileSearch {
 		xmls = new ArrayList<File>();
 	}
 
-	public void findMovies() {
+
+    public void findFilesToCommit(Date date){
+        this.findMovies(date);
+        this.findXmls(date);
+
+        this.compareLists();
+
+        this.TestConsolePrint();
+    }
+
+	public void findMovies(Date date) {
+        movies = new ArrayList<File>();
+
 		File dir = new File(moviesDirectory);
 		for (File file : dir.listFiles()) {
+
+            Date fileModifiedDate = new Date(file.lastModified() * 1000);
+
+            if(date != null){
+                if(date.after(fileModifiedDate)){
+                    continue;
+                }
+            }
+
 			if (file.getName().endsWith(("." + moviesExtension))
 					&& file.canRead()) {
 				movies.add(file);
@@ -34,9 +57,20 @@ public class FileSearch {
 
 	}
 
-	public void findXmls() {
+	public void findXmls(Date date) {
+        xmls = new ArrayList<File>();
+
 		File dir = new File(xmlsDirectory);
 		for (File file : dir.listFiles()) {
+
+            Date fileModifiedDate = new Date(file.lastModified() * 1000);
+
+            if(date != null){
+                if(date.after(fileModifiedDate)){
+                    continue;
+                }
+            }
+
 			if (file.getName().endsWith((".xml")) && file.canRead()) {
 				xmls.add(file);
 			}
