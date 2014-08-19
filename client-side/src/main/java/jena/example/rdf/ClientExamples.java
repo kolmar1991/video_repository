@@ -27,13 +27,15 @@ import javax.ws.rs.core.UriBuilder;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 
 public class ClientExamples {
 
     public static void main(String[] s) throws IOException, MessagingException {
         new ClientExamples().sendMovie("C:\\Users\\Marcin\\Desktop\\pmbok.png");
         new ClientExamples().sendRdf();
-
+        new ClientExamples().sendDate();
+        new ClientExamples().getDate();
     }
 
     public void sendMovie(String fileName) throws IOException, MessagingException {
@@ -56,6 +58,29 @@ public class ClientExamples {
         sendToRestService(rdf, "jasiek", "aaa", "jeden.xml");
 
     }
+
+    public void sendDate() {
+        String date = new Date().toString();
+        ClientConfig config = new DefaultClientConfig();
+        Client client = Client.create(config);
+        WebResource webResource = client.resource(UriBuilder.fromUri("http://localhost:8080/videorepository/webservices/date/setupdatedate").build());
+        MultivaluedMap formData = new MultivaluedMapImpl();
+        formData.add("date", date);
+        formData.add("username", "jasiek");
+        ClientResponse response = webResource.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE).post(ClientResponse.class, formData);
+        System.out.println("Response " + response.getEntity(String.class));
+    }
+
+    public void getDate() {
+        ClientConfig config = new DefaultClientConfig();
+        Client client = Client.create(config);
+        WebResource webResource = client.resource(UriBuilder.fromUri("http://localhost:8080/videorepository/webservices/date/getupdatedate").build());
+        MultivaluedMap formData = new MultivaluedMapImpl();
+        formData.add("username", "jasiek");
+        ClientResponse response = webResource.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE).post(ClientResponse.class, formData);
+        System.out.println("Response " + response.getEntity(String.class));
+    }
+
 
     private void sendToRestService(String rdf, String user, String pass, String fileName) {
         ClientConfig config = new DefaultClientConfig();
