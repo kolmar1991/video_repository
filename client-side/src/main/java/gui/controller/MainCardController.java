@@ -6,19 +6,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.JFileChooser;
 
 import gui.view.OptionsCardView;
+import model.DataSender;
 import model.DateService;
 import model.FileSearch;
+import model.MovieXmlPair;
 
 public class MainCardController implements ActionListener {
 
 	private MainCardView mainCardView;
     private OptionsCardView optionsCardView;
+    private DataSender dataSender;
 
 	public MainCardController(MainCardView mainCardView, OptionsCardView optionsCardView) {
+
+        this.dataSender = new DataSender("jasiek","Trololo");
 
 		this.mainCardView = mainCardView;
         this.optionsCardView = optionsCardView;
@@ -77,17 +83,30 @@ public class MainCardController implements ActionListener {
 
             DateService dateService= new DateService();
 
-            Date date = dateService.getLastCommitDate();
+            Date lastCommitDate = dateService.getLastCommitDate();
 
-            if(date != null){
-            System.out.println("XXXX DATE: " + date.toString());
+            if(lastCommitDate != null){
+            System.out.println("XXXX DATE: " + lastCommitDate.toString());
             }
 
-			fileSearch.findMovies();
-			fileSearch.findXmls();
-			fileSearch.TestConsolePrint();
-			fileSearch.compareLists();
-			fileSearch.TestConsolePrint();
+            Date now = new Date();
+
+
+            List<MovieXmlPair> movieXmlPairs = fileSearch.findFilesToCommit(lastCommitDate, now);
+
+            System.out.println("Sending started");
+
+            for(int i = 0; i< movieXmlPairs.size(); i++){
+                System.out.println("Sending " + i + " pair (" + movieXmlPairs.get(i).getXml().getName() + ")");
+                this.dataSender.sendToRestService(movieXmlPairs.get(i).getXml(), movieXmlPairs.get(i).getMovie());
+                System.out.println("Pair (" + movieXmlPairs.get(i).getXml().getName() +") is sended");
+            }
+
+            System.out.println("Sending finished");
+
+            dateService.setLastCommitDate(now);
+
+            System.out.println("new date uploaded to server");
 		}
 
         if(event.getSource() == mainCardView.getSameDirectoryCheckBox()){

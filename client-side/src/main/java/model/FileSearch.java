@@ -1,9 +1,9 @@
 package model;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class FileSearch {
 
@@ -26,59 +26,78 @@ public class FileSearch {
 	}
 
 
-    public void findFilesToCommit(Date date){
-        this.findMovies(date);
-        this.findXmls(date);
+    public List<MovieXmlPair> findFilesToCommit(Date lastUpload, Date now){
+        this.findMovies(lastUpload, now);
+        this.findXmls(lastUpload, now);
 
         this.compareLists();
 
+        this.sortLists();
+
         this.TestConsolePrint();
+
+        return this.createParis();
     }
 
-	public void findMovies(Date date) {
+	private void findMovies(Date lastUpload, Date now) {
         movies = new ArrayList<File>();
 
 		File dir = new File(moviesDirectory);
 		for (File file : dir.listFiles()) {
 
-            Date fileModifiedDate = new Date(file.lastModified() * 1000);
+          //  Date fileModifiedDate = new Date(file.lastModified() * 1000);
+            Date fileModifiedDate = new Date(file.lastModified());
 
-            if(date != null){
-                if(date.after(fileModifiedDate)){
+            if(lastUpload != null){
+                if(lastUpload.after(fileModifiedDate)){
                     continue;
                 }
             }
 
 			if (file.getName().endsWith(("." + moviesExtension))
 					&& file.canRead()) {
+
+                DateFormat dateForamt = new SimpleDateFormat("yyyy MM dd HH:mm:ss");
+
+                String fileDate = dateForamt.format(fileModifiedDate);
+                String nowDate = dateForamt.format(now);
+
+                System.out.println("File: " + fileDate);
+                System.out.println("Now: " + nowDate);
+
+                if(fileModifiedDate.before(now))
+             {
 				movies.add(file);
 			}
+            }
 		}
 
 	}
 
-	public void findXmls(Date date) {
+	private void findXmls(Date lastUpload, Date now) {
         xmls = new ArrayList<File>();
 
 		File dir = new File(xmlsDirectory);
 		for (File file : dir.listFiles()) {
 
-            Date fileModifiedDate = new Date(file.lastModified() * 1000);
+           // Date fileModifiedDate = new Date(file.lastModified() * 1000);
+            Date fileModifiedDate = new Date(file.lastModified());
 
-            if(date != null){
-                if(date.after(fileModifiedDate)){
+
+            if(lastUpload != null){
+                if(lastUpload.after(fileModifiedDate)){
                     continue;
                 }
             }
 
-			if (file.getName().endsWith((".xml")) && file.canRead()) {
+			if (file.getName().endsWith((".xml")) && file.canRead() && fileModifiedDate.before(now)) {
 				xmls.add(file);
 			}
 		}
 
 	}
 
-	public void compareLists() {
+	private void compareLists() {
 		List<File> moviesTmp = new ArrayList<File>();
 		List<File> xmlsTmp = new ArrayList<File>();		
 		
@@ -126,6 +145,42 @@ public class FileSearch {
 		xmls = xmlsTmp;
 
 	}
+
+    private void sortLists(){
+
+        Collections.sort(movies, new Comparator<File>(){
+            public int compare(File f1, File f2){
+                String name1 = f1.getName();
+                String name2 = f2.getName();
+                return name1.compareTo(name2);
+            }
+        });
+
+        Collections.sort(xmls, new Comparator<File>(){
+            public int compare(File f1, File f2){
+                String name1 = f1.getName();
+                String name2 = f2.getName();
+                return name1.compareTo(name2);
+            }
+        });
+
+    }
+
+    private List<MovieXmlPair> createParis(){
+        List<MovieXmlPair> pairs = new ArrayList<MovieXmlPair>();
+
+        int size = movies.size();
+
+        if (size != xmls.size()){
+            return null;
+        }
+
+        for(int i = 0; i < size; i++){
+            pairs.add(new MovieXmlPair(movies.get(i), xmls.get(i)));
+        }
+
+        return pairs;
+    }
 
 	public void TestConsolePrint() {
 		System.out.println("Number of movies = " + movies.size());

@@ -21,9 +21,12 @@ import java.util.Date;
 public class DateService {
 
     private Date lastCommitDate;
+    private DateFormat dateForamt;
+
 
     public DateService(){
         this.lastCommitDate = null;
+        dateForamt = new SimpleDateFormat("yyyy MM dd HH:mm:ss");
     }
 
     public String sendDateToServer(Date date) {
@@ -33,12 +36,15 @@ public class DateService {
         Client client = Client.create(config);
         WebResource webResource = client.resource(UriBuilder.fromUri("http://localhost:8080/videorepository/webservices/date/setupdatedate").build());
         MultivaluedMap formData = new MultivaluedMapImpl();
-        formData.add("date", date.toString());
+        formData.add("date", dateForamt.format(date));
         formData.add("username", "jasiek");
         ClientResponse response = webResource.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE).post(ClientResponse.class, formData);
-        System.out.println("Response " + response.getEntity(String.class));
 
-        return response.getEntity(String.class);
+        String responseMsg =  response.getEntity(String.class);
+
+        System.out.println("Response " + responseMsg);
+
+        return responseMsg;
     }
 
     public Date getDateFromServer() {
@@ -48,16 +54,23 @@ public class DateService {
         MultivaluedMap formData = new MultivaluedMapImpl();
         formData.add("username", "jasiek");
         ClientResponse response = webResource.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE).post(ClientResponse.class, formData);
-        System.out.println("Response " + response.getEntity(String.class));
 
-        if(response.getEntity(String.class).equals("")){
+        String responseMsg =  response.getEntity(String.class);
+
+        System.out.println("Response " + responseMsg);
+
+
+
+        if(responseMsg.equals("")){
             return null;
         }
 
         Date date = null;
-        DateFormat df =  new SimpleDateFormat("yyyy-MM-dd");
+
+
+        //DateFormat df =  new SimpleDateFormat("EEE MMM dd HH:mm:ss zzzz yyyy");
         try {
-            date = df.parse(response.getEntity(String.class));
+            date = dateForamt.parse(responseMsg);
         } catch (ParseException e) {
             e.printStackTrace();
             return null;
