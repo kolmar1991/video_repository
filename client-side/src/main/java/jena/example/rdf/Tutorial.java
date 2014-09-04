@@ -25,7 +25,7 @@ public class Tutorial {
                         model.createResource()
                                 .addProperty(VCARD.Given, givenName)
                                 .addProperty(VCARD.Family, familyName));
-
+        
         DatasetAccessor datasetAccessor = DatasetAccessorFactory.createHTTP("http://localhost:3030/ds/data");
         datasetAccessor.putModel("dss", model);
         model = datasetAccessor.getModel("dss");
@@ -34,9 +34,9 @@ public class Tutorial {
 //        Model model2 = ModelFactory.createDefaultModel();
 //        model2.read(decodedInput, null);
 //        model2.write(System.out);
-
+        
         printModel(model);
-
+        
     }
 
     private static void printModel(Model model) {

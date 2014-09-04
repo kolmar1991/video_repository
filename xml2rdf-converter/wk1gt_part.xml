@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset name="Walk1">
+
+<frame number="20">
+
+        <objectlist>
+
+            <object id="0">
+                <orientation>45</orientation>
+                <box h="6" w="25" xc="260" yc="284"/>
+                <appearance>visible</appearance>
+                <hypothesislist>
+                    <hypothesis evaluation="1.0" id="1" prev="1.0">
+                        <movement evaluation="1.0">walking</movement>
+                        <role evaluation="1.0">walker</role>
+                        <context evaluation="1.0">immobile</context>
+                        <situation evaluation="1.0"></situation>
+                    </hypothesis>
+                 </hypothesislist>
+            </object>
+
+        </objectlist>
+
+        <grouplist/>
+
+    </frame>
+
+<frame number="21">
+
+        <objectlist>
+
+            <object id="0">
+                <orientation>45</orientation>
+                <box h="6" w="25" xc="260" yc="284"/>
+                <appearance>visible</appearance>
+				<!--                
+				<hypothesislist>
+                    <hypothesis evaluation="1.0" id="1" prev="1.0">
+                        <movement evaluation="1.0">walking</movement>
+                        <role evaluation="1.0">walker</role>
+                        <context evaluation="1.0">immobile</context>
+                        <situation evaluation="1.0">moving</situation>
+                    </hypothesis>
+                 </hypothesislist>
+-->
+            </object>
+
+        </objectlist>
+
+        <grouplist/>
+
+    </frame>
+
+</dataset>
+

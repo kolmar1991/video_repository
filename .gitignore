@@ -12,3 +12,4 @@
 #server-side
 /server-side/.idea
 /server-side/target
+/xml2rdf-converter/target/

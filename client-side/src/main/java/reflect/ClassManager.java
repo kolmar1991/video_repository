@@ -1,6 +1,7 @@
 package reflect;
 
 import java.io.IOException;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -8,10 +9,6 @@ import java.util.Enumeration;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
-/**
- *
- * @author piotrek
- */
 public class ClassManager {
 
     /*
@@ -46,14 +43,21 @@ public class ClassManager {
         throw new ClassNotFoundException();
     }
     
-    public static String invoke(String jarPath, String classNameToLoad, String methodName, Object object) throws NoSuchMethodException, IllegalAccessException,
-            IllegalArgumentException, InvocationTargetException, IOException, ClassNotFoundException {
-        Class clazz = load(jarPath, classNameToLoad);
+    public static String invoke(Class clazz, String methodName, Object object) throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, IOException, ClassNotFoundException {
         return (String) clazz.getMethod(methodName).invoke(object);
     }
     
+    public static Object construct(Class clazz, Class[] argTypes, Object arguments) throws NoSuchMethodException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        Constructor constructor = clazz.getDeclaredConstructor(argTypes);
+        return constructor.newInstance(arguments);
+    }
+    
+    // for testing purposes
     public static void main(String[] args) throws IOException, NoSuchMethodException, IllegalAccessException, IllegalArgumentException,
-            InvocationTargetException, ClassNotFoundException {
-        System.out.println(invoke("ConverterExample-1.0-SNAPSHOT.jar", "main.MainClass", "convert", null));
+            InvocationTargetException, ClassNotFoundException, InstantiationException {
+        Class clazz = load("xml2rdf-converter-1.0.jar", "pl.edu.agh.Converter");
+        Object object = construct(clazz, new Class[]{String.class}, "xmls/wk1gt.xml");
+        String result = invoke(clazz, "convert", object);
+        System.out.println("RESULT: " + result);
     }
 }
