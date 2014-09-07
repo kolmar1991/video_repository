@@ -22,8 +22,8 @@ public class OptionsCardView {
 		return panel;
 	}
 
-    public String getMoviesExtension(){
-        return (String) moviesExtensions.getSelectedItem();
+    public JComboBox getMoviesExtension(){
+        return  moviesExtensions;
     }
 
 }
