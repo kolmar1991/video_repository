@@ -36,7 +36,20 @@ public class DataSender {
     }
 
 
-    public void sendToRestService(File rdf, File clip) {
+    public void sendToRestService(String rdf, String fileName) {
+        ClientConfig config = new DefaultClientConfig();
+        Client client = Client.create(config);
+        WebResource webResource = client.resource(UriBuilder.fromUri("http://localhost:8080/videorepository/webservices/myresource/rdfupload").build());
+        MultivaluedMap formData = new MultivaluedMapImpl();
+        formData.add("rdf", rdf);
+        formData.add("username", user);
+        formData.add("password", pass);
+        formData.add("xmlFileName", fileName);
+        ClientResponse response = webResource.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE).post(ClientResponse.class, formData);
+        System.out.println("Response " + response.getEntity(String.class));
+    }
+
+    /*public void sendToRestService(File rdf, File clip) {
         ClientConfig config = new DefaultClientConfig();
         Client client = Client.create(config);
         WebResource webResource = client.resource(UriBuilder.fromUri("http://localhost:8080/videorepository/webservices/myresource/rdfupload").build());
@@ -47,7 +60,7 @@ public class DataSender {
         formData.add("xmlFileName", "asd");
         ClientResponse response = webResource.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE).post(ClientResponse.class, formData);
         System.out.println("Response " + response.getEntity(String.class));
-    }
+    }*/
 
     public void sendFile(File file) throws IOException, MessagingException {
         String url = "http://localhost:8080/videorepository/webservices/fileupload";

@@ -5,10 +5,20 @@ import com.hp.hpl.jena.query.DatasetAccessorFactory;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.VCARD;
 
+import java.io.StringWriter;
+import java.io.Writer;
+
 public class Tutorial {
 
     public static void main(String args[]) {
-        // some definitions
+        DatasetAccessor datasetAccessor = DatasetAccessorFactory.createHTTP("http://localhost:3030/videoRepo/data");
+        Model model = datasetAccessor.getModel("jasiek_SEP1.xml");
+
+        Writer writer = new StringWriter();
+        model.write(writer);
+        System.out.println(writer.toString());
+
+        /*// some definitions
         String personURI = "http://somewhere/JohnSmith";
         String givenName = "John";
         String familyName = "Smith";
@@ -28,7 +38,7 @@ public class Tutorial {
         
         DatasetAccessor datasetAccessor = DatasetAccessorFactory.createHTTP("http://localhost:3030/ds/data");
         datasetAccessor.putModel("dss", model);
-        model = datasetAccessor.getModel("dss");
+        model = datasetAccessor.getModel("dss");*/
 
 //        InputStream decodedInput = new ByteArrayInputStream(s.getBytes());
 //        Model model2 = ModelFactory.createDefaultModel();

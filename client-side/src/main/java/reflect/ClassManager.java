@@ -19,7 +19,7 @@ public class ClassManager {
         following method loads class where convert method is defined, in order to invoke the method
         during coversion process
     */
-    private static Class load(String jarPath, String classNameToLoad) throws IOException, ClassNotFoundException {
+    public static Class load(String jarPath, String classNameToLoad) throws IOException, ClassNotFoundException {
         JarFile jarFile = new JarFile(jarPath);
         Enumeration<JarEntry> entries = jarFile.entries();
         URLClassLoader classLoader = URLClassLoader.newInstance(new URL[]{new URL("jar:file:" + jarPath + "!/")});
@@ -55,7 +55,9 @@ public class ClassManager {
     // for testing purposes
     public static void main(String[] args) throws IOException, NoSuchMethodException, IllegalAccessException, IllegalArgumentException,
             InvocationTargetException, ClassNotFoundException, InstantiationException {
-        Class clazz = load("xml2rdf-converter-1.0.jar", "pl.edu.agh.Converter");
+        System.out.println("Working Directory = " +
+                System.getProperty("user.dir"));
+        Class clazz = load("client-side/xml2rdf-converter.jar", "pl.edu.agh.Converter");
         Object object = construct(clazz, new Class[]{String.class}, "xmls/wk1gt.xml");
         String result = invoke(clazz, "convert", object);
         System.out.println("RESULT: " + result);
